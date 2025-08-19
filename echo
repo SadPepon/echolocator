@@ -1,0 +1,53 @@
+#define trigPin=7;
+#define echoPin=8;
+#define red=9;
+#define green=10;
+#define blue=11;
+int r=0;
+int g=0;
+void setup() {
+  Serial.begin (9600);
+  pinMode(trigPin,OUTPUT);
+  pinMode(echoPin,INPUT);
+  pinMode(9,OUTPUT);
+  pinMode(10,OUTPUT);
+  pinMode(11,OUTPUT);
+  // put your setup code here, to run once:
+
+}
+
+void loop() {
+  func();
+  delay(10);
+Lcd.setCursor
+
+}
+int distanceCalc(){
+  long timez, distance;
+  digitalWrite(trigPin,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin,LOW);
+
+  timez=pulseIn(echoPin,HIGH);
+  distance=timez / 58;
+  return distance;
+}
+void func(){
+  int far=distanceCalc();
+  if (far>100){
+    analogWrite(red,0);
+    analogWrite(green,255);
+  }
+  else if (far<20){
+    analogWrite(green,0);
+    analogWrite(red,255);
+  }
+  else {
+    r = round(255*(100-far)/80);
+    g = 255 - r;
+    analogWrite(red,r);
+    analogWrite(green,g);
+    
+  }
